@@ -1,0 +1,94 @@
+create table Employee 
+  (ENO Number(2) not null  
+	,EMP_LNAME Varchar2(20) not null
+	,EMP_FNAME Varchar2(20) not null
+                   ,JOB_TITL Varchar2(20)
+	,EMP_SEX Char(1)
+	,EMP_DOB Date
+	,EMP_STATUS Varchar2(50)
+	,CONSTRAINT EMPLOYEE_PK PRIMARY KEY (ENO));
+  
+create table Customer    
+  (CNO Number(4) not null
+	,CUST_LNAME Varchar2(20) not null
+	,CUST_FNAME Varchar2(20) not null
+	,CUST_SEX Char(1)
+	,CONSTRAINT Customer_PK PRIMARY KEY (CNO));
+  
+create table Product       	 	
+  (PNO varchar(4) not null
+                   ,Prod_CATEGORY Varchar2(50)
+	,PROD_name Varchar2(20)
+	,UNIT_PRICE Number(10,2)
+	,UNIT_COST Number(10,2)
+	,CONSTRAINT Product_PK PRIMARY KEY (PNO));
+  
+create table orders   		
+  ( CNO Number(4) not null
+  ,CUST_ORDER_DATE Date
+  ,CUST_SHIP_DATE Date
+  ,ONO Number(4) not null
+  ,ORDER_QTY Number(3)
+  ,ENO Number(2) not null
+  ,PNO varchar(4) not null
+	,CONSTRAINT orders_PK PRIMARY KEY (ONO,PNO,ENO,CNO)
+                   ,CONSTRAINT orders_FK1 FOREIGN KEY (PNO) REFERENCES product  (PNO)
+	,CONSTRAINT orders_FK2 FOREIGN KEY (ENO) REFERENCES Employee (ENO) 
+	,CONSTRAINT orders_FK3 FOREIGN KEY (CNO) REFERENCES Customer (CNO));
+
+
+insert into Employee  values	(14,'John','Sears','Sales','M','11-May-56','Active');
+insert into Employee  values	(15,'Zane','Neilsen','Sales','F','11-May-56','Active');
+insert into Employee  values	(12,'Reid','John','Manager','M','28-Apr-39','Retired');
+insert into Employee  values	(13,'Nick','Geisen','Manager','F','6-May-76','Terminated');
+insert into Employee  values	(16,'Shah','Kumar','Manager','M','11-May-56','Active');
+
+
+
+insert into Customer  values	(100,'Mason','Landam','M');
+insert into Customer  values	(103,'Lee','Kim','M');
+insert into Customer  values	(102,'Lee','Sandra','F');
+insert into Customer  values	(101,'Sylvester','Al','M');
+insert into Customer  values	(104,'Jenny','Howards','F');
+insert into Customer  values	(105,'Halle','Edward','M');
+
+
+insert into  product  values	('P20',' laptop','Macbook Air',1200,700);		
+insert into  product  values	('P40',' laptop','Macbook Pro',1500,1000);		
+insert into  product  values	('P50',' laptop','Dell XPS',800,500);		
+insert into  product  values	('P70',' laptop','Acer Aspire',750,550);		
+insert into  product  values	('P90','smartphone','iphone 8',700,300);		
+insert into  product  values	('P60','smartphone','s6 edge',350,150);		
+insert into  product  values	('P150','smartphone','iphone 7',600,250);		
+insert into  product  values	('P100','tablet','ipad',340,200);		
+insert into  product  values	('P110','tablet','amazon fire',150,80);		
+		
+
+
+
+
+insert into  orders  values		(100,'	27-Apr-99	','	2-May-99	',1007,12,14,'P20')			;
+insert into  orders  values		(100,'	2-May-99	','	7-May-99	',1065,4,15,'P40')			;
+insert into  orders  values		(103,'	1-May-99	','	6-May-99	',1032,1,14,'P50')			;
+insert into  orders  values		(102,'	2-May-99	','	9-May-99	',1064,1,15,'P70')			;
+insert into  orders  values		(102,'	2-May-99	','	9-May-99	',1064,3,15,'P50')			;
+insert into  orders  values		(102,'	2-May-99	','	9-May-99	',1064,2,15,'P40')			;
+insert into  orders  values		(101,'	7-Jan-00	','	12-Jan-00	',1067,3,14,'P90')			;
+insert into  orders  values		(101,'	7-Jan-00	','	12-Jan-00	',1067,3,14,'P60')			;
+insert into  orders  values		(101,'	7-Jan-00	','	12-Jan-00	',1067,4,14,'P150')			;
+insert into  orders  values		(101,'	7-Jan-00	','	12-Jan-00	',1067,7,14,'P100')			;
+insert into  orders  values		(101,'	7-Jan-00	','	12-Jan-00	',1067,9,14,'P110')			;
+insert into  orders  values		(101,'	7-Jan-00	','	12-Jan-00	',1067,13,14,'P70')			;
+insert into  orders  values		(101,'	7-Jan-00	','	12-Jan-00	',1067,10,14,'P20')			;
+insert into  orders  values		(101,'	7-Jan-00	','	12-Jan-00	',1067,12,14,'P50')			;
+insert into  orders  values		(101,'	7-Jan-00	','	12-Jan-00	',1067,3,14,'P40')			;
+insert into  orders  values		(101,'	30-Apr-99	','	5-May-99	',1026,5,12,'P70')			;
+insert into  orders  values		(104,'	29-Apr-99	','	4-May-99	',1025,5,13,'P60')			;
+insert into  orders  values		(105,'	3-Mar-99	','	7-Mar-99	',1023,8,16,'P40')			;
+insert into  orders  values		(105,'	6-Apr-99	','	9-Apr-99	',1027,8,16,'P20')			;
+
+
+
+
+
+	
